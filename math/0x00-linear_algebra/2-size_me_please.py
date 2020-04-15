@@ -3,6 +3,7 @@
 
 
 def rec_matrix_shape(matrix, shape):
+    """recursively get shape of matrix"""
     if type(matrix) == list:
         shape.append(len(matrix))
         rec_matrix_shape(matrix[0], shape)
@@ -10,4 +11,5 @@ def rec_matrix_shape(matrix, shape):
 
 
 def matrix_shape(matrix):
+    """call function to recursively get shape"""
     return rec_matrix_shape(matrix, [])
