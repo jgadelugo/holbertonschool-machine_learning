@@ -20,4 +20,4 @@ def add_arrays(arr1, arr2):
     if matrix_shape(arr1) != matrix_shape(arr2):
         return None
     else:
-        return [x + y for x, y in zip(arr1, arr2)]
+        return [sum(x) for x in zip(arr1, arr2)]
