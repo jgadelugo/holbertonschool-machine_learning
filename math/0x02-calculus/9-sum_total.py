@@ -1,4 +1,4 @@
-#!/bin/usr/env python3
+#!/usr/bin/env python
 """ Function that calculates Sum (i=1, n) i^2"""
 
 
