@@ -9,6 +9,8 @@ def poly_derivative(poly):
     size = len(poly)
     if size == 0:
         return [0]
+    new = []
     for x in range(size):
-        poly[x] *= x
-    return poly[1:]
+        if x > 0:
+            new.append(poly[x] *= x)
+    return new
