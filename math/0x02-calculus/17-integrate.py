@@ -12,5 +12,7 @@ def poly_integral(poly, c=0):
     size = len(poly)
     for x in range(1, size + 1):
         v = poly[x - 1] / x
-        new.append(int(v) if (v).is_integer() else v)
+        if (v).is_integer():
+            v = int(v)
+        new.append(v)
     return new
