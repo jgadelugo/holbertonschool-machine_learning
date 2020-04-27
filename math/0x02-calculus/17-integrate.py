@@ -2,13 +2,13 @@
 """ Function that calculates the derivative of a polynomial """
 
 
-def poly_integral(poly, c=0):
-    """calculates the derivative of a polynomial .is_integer()"""
+def poly_integral(poly, C=0):
+    """calculates the derivative of a polynomial"""
     if isinstance(poly, list) is False or len(poly) == 0:
         return None
-    if isinstance(c, int) is False:
+    if isinstance(C , int) is False:
         return None
-    new = [c]
+    new = [C]
     size = len(poly)
     for x in range(1, size + 1):
         v = poly[x - 1] / x
