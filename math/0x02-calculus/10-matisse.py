@@ -12,5 +12,5 @@ def poly_derivative(poly):
     new = []
     for x in range(size):
         if x > 0:
-            new.append(poly[x] *= x)
+            new.append(poly[x] * x)
     return new
