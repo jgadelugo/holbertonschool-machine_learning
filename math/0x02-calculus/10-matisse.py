@@ -1,4 +1,4 @@
-#!usr/bin/env/env python3
+#!usr/bin/env python3
 """ Function that calculates the derivative of a polynomial """
 
 
