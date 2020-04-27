@@ -4,6 +4,10 @@
 
 def poly_integral(poly, c=0):
     """calculates the derivative of a polynomial .is_integer()"""
+    if isinstance(poly, list) is False or len(poly) == 0:
+        return None
+    if isinstance(c, int) is False:
+        return None
     new = [c]
     size = len(poly)
     for x in range(1, size + 1):
