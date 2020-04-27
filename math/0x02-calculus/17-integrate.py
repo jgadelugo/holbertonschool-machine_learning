@@ -9,6 +9,8 @@ def poly_integral(poly, C=0):
     if isinstance(C, int) is False and isinstance(C, float) is False:
         return None
     new = [C]
+    if poly == [0]:
+        return new
     size = len(poly)
     for x in range(size):
         v = poly[x] / (x + 1)
