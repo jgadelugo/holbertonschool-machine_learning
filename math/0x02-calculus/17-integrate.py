@@ -4,7 +4,7 @@
 
 def poly_integral(poly, C=0):
     """calculates the derivative of a polynomial"""
-    if isinstance(poly, list) is False or len(poly) == 0:
+    if isinstance(poly, list) is False:
         return None
     if isinstance(C, int) is False:
         return None
