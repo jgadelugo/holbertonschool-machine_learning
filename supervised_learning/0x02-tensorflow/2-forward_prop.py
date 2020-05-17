@@ -7,7 +7,8 @@ create_layer = __import__('1-create_layer').create_layer
 def forward_prop(x, layer_sizes=[], activations=[]):
     """
     @x: is the placeholder for the input data
-    @layer_sizes: list conatining the number of nodes in each layer of the network
+    @layer_sizes: list conatining the number of nodes
+        in each layer of the network
     @activations: list of activation functions
     Returns: the prediction of the network in tensor form
     """
