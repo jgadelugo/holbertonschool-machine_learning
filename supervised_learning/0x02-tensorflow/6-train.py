@@ -32,7 +32,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
     tf.add_to_collection('y', y)
     tf.add_to_collection('y_pred', y_pred)
     tf.add_to_collection('loss', loss)
-    tf.add_to_collection('t_acc', acc)
+    tf.add_to_collection('accuracy', acc)
     tf.add_to_collection('train_op', train_op)
 
     init = tf.global_variables_initializer()
@@ -49,9 +49,9 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
             if (i % 100 == 0) or (i == iterations):
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(t_loss))
-                print("\tTraining t_acc: {}".format(t_acc))
+                print("\tTraining Accuracy: {}".format(t_acc))
                 print("\tValidation Cost: {}".format(v_loss))
-                print("\tValidation t_acc: {}".format(v_acc))
+                print("\tValidation Accuracy: {}".format(v_acc))
             if (i < iterations):
                 sess.run((train_op), feed_dict={x: X_train, y: Y_train})
                 t_loss, t_acc = sess.run((loss, acc), feed_dict={x: X_train,
