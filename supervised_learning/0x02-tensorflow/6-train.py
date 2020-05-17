@@ -41,9 +41,9 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
     with tf.Session() as sess:
         sess.run(init)
         t_loss, t_acc = sess.run((loss, acc), feed_dict={x: X_train,
-                                                        y: Y_train})
+                                                         y: Y_train})
         v_loss, v_acc = sess.run((loss, acc), feed_dict={x: X_valid,
-                                                        y: Y_valid})
+                                                         y: Y_valid})
         i = 0
         while i <= iterations:
             if (i % 100 == 0) or (i == iterations):
@@ -55,9 +55,9 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
             if (i < iterations):
                 sess.run((train_op), feed_dict={x: X_train, y: Y_train})
                 t_loss, t_acc = sess.run((loss, acc), feed_dict={x: X_train,
-                                                                y: Y_train})
+                                                                 y: Y_train})
                 v_loss, v_acc = sess.run((loss, acc), feed_dict={x: X_valid,
-                                                                y: Y_valid})
+                                                                 y: Y_valid})
             i += 1
         save_path = saver.save(sess, save_path)
     return save_path
