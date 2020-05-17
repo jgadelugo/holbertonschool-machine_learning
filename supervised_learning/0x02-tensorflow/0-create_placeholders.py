@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""create placeholder"""
 import tensorflow as tf
 
 
