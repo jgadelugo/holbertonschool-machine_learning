@@ -20,3 +20,7 @@ class DeepNeuralNetwork:
             raise TypeError("layers must be an integer")
         elif layers < 1:
             raise ValueError("layers must be a positive integer")
+
+    def forward_prop(self, X):
+        """ Calculates the forward propagation """
+        pass
