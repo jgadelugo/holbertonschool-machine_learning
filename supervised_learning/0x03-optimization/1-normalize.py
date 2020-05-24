@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" function that calculates the normalization constant of a matrix"""
 
 
 def normalize(X, m, s):
