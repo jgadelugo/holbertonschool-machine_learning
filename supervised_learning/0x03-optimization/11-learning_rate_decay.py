@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-""" Update a variable in place using the adam optimization algorithm """
-import tensorflow as tf
+"""updates the learning rate using inverse time decay """
 
 
 def learning_rate_decay(alpha, decay_rate, global_step, decay_step):
-    """ Update a variable in place using the adam optimization algorithm
+    """ updates the learning rate using inverse time decay
     @alpha: learning rate
     @decay_rate: weight used to determine the rate at which alpha will decay
     @global_step: number of passes of gradient descent that have elapsed
