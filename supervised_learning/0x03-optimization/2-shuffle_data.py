@@ -15,4 +15,4 @@ def shuffle_data(X, Y):
     """
     vector = np.arrange(X.shape[0])
     index = np.random.permutation(vector)
-    return (X[index], Y[index])
+    return X[index], Y[index]
