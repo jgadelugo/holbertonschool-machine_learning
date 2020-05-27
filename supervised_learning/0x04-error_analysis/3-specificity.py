@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def precision(confusion):
+def specificity(confusion):
     """calculates the specificity for each class in a confusion matrix
     @confusion: confusion np.ndarray - shape (classes, classes) -
     rows represent correct labels, columns represent predicted labels
