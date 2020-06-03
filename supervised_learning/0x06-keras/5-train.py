@@ -4,7 +4,7 @@ import tensorflow.keras as K
 
 
 def train_model(network, data, labels, batch_size, epochs,
-                verbose=True, shuffle=False):
+                validation_data=None, verbose=True, shuffle=False):
     """train a model using mini-bath gradient descent
     @network: model to train
     @data: np.ndarray - shape (m, classes) - of input data
@@ -12,6 +12,7 @@ def train_model(network, data, labels, batch_size, epochs,
     containing the labels of data
     @batch_size: the size of the batch
     @epochs: the number of passes through data
+    @validation_data: the data to validate the model with
     @verbose: a boolean that determines if output should be
     printed during training
     @shuffle: a boolean that determines wheher to shuffle the batches
@@ -21,4 +22,5 @@ def train_model(network, data, labels, batch_size, epochs,
     """
     return network.fit(data, labels, epochs=epochs,
                        batch_size=batch_size, verbose=verbose,
-                       shuffle=shuffle)
+                       shuffle=shuffle,
+                       validation_data=validation_data)
