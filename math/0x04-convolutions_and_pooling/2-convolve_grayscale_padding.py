@@ -37,7 +37,7 @@ def convolve_grayscale_padding(images, kernel, padding):
     img_pad = np.pad(images,
                      pad_width=((0, 0), (pad_h, pad_h), (pad_w, pad_w)),
                      mode='constant', constant_values=0)
-    
+
     # set height and width
     height = int(img_pad.shape[1] - kh + 1)
     width = int(img_pad.shape[2] - kw + 1)
