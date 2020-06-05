@@ -66,11 +66,12 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
 
     # convolution image
     new_img = np.zeros((m, height, width, nc))
+    image = np.arange(0, m)
 
     for i in range(height):
         for j in range(width):
             for z in range(nc):
-                img = img_pad[:, i * sh: i * sh + kh, j * sw: j * sw + kw, :]
+                img = img_pad[image, i * sh: i * sh + kh, j * sw: j * sw + kw, :]
                 kernel = kernels[:, :, :, z]
-                new_img[:, i, j, z] = np.sum(kernel * img, axis=(1, 2, 3))
+                new_img[image, i, j, z] = np.sum(kernel * img, axis=(1, 2, 3))
     return new_img
