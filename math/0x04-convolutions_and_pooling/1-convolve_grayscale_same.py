@@ -4,7 +4,7 @@ import numpy as np
 
 
 def convolve_grayscale_same(images, kernel):
-    """ performs a valid convolution on grayscale image
+    """ performs a valid convolution on grayscale image with padding
     @images: np.ndarray - shape(m, h, w) - containing multiple
     grayscale images
         @m: number of images
@@ -31,14 +31,14 @@ def convolve_grayscale_same(images, kernel):
     pad_w = max(int((kw - 1) / 2), int(kw / 2))
 
     img_pad = np.pad(images,
-                     pad_w=((0, 0), (ph, ph), (pw, pw)),
+                     pad_width=((0, 0), (pad_h, pad_h), (pad_w, pad_w)),
                      mode='constant', constant_values=0)
 
     # convolution image
     new_img = np.zeros((m, h, w))
 
-    for i in range(width):
-        for j in range(height):
-            img = img_pad[:, i: i + kh, y: y + kw]
+    for i in range(h):
+        for j in range(w):
+            img = img_pad[:, i: i + kh, j: j + kw]
             new_img[:, j, i] = np.sum(kernel * img, axis=(1, 2))
     return new_img
