@@ -4,7 +4,7 @@ with custom padding"""
 import numpy as np
 
 
-def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
+def convolve(images, kernels, padding='same', stride=(1, 1)):
     """ performs a valid convolution on grayscale image
     with custom padding with channels
     @images: np.ndarray - shape(m, h, w) - containing multiple
@@ -17,6 +17,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     for the convolution
         @kh: height of the kernel
         @kw: width of the kernel
+        @nc: number of kernels
     @padding: is a tuple of (ph, pw)
         *if 'same', performs a same convolution
         *if 'valid', performs a valid convolution
@@ -26,7 +27,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     @stride: tuple (sh, sw)
         @sh: stride for the height of the image
         @sw: stride for the width of the image
-    *only allowed to use two for loop
+    *only allowed to use three for loop
     Return: np.ndarray conatining the convolved images
     """
     # image variables
@@ -35,8 +36,9 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     w = images.shape[2]
 
     # kernel variables
-    kh = kernel.shape[0]
-    kw = kernel.shape[1]
+    kh = kernels.shape[0]
+    kw = kernels.shape[1]
+    nc = kernels.shape[2]
 
     # stride variables
     sh = stride[0]
@@ -59,14 +61,16 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
                      mode='constant', constant_values=0)
 
     # set height and width
-    height = int((img_pad.shape[1] - kh) / sh + 1)
-    width = int((img_pad.shape[2] - kw) / sw + 1)
+    height = int((h + 2 * pad_h - kh) / sh + 1)
+    width = int((w + 2 * pad_w - kw) / sw + 1)
 
     # convolution image
-    new_img = np.zeros((m, height, width))
+    new_img = np.zeros((m, height, width, nc))
 
     for i in range(height):
         for j in range(width):
-            img = img_pad[:, j * sh: j * sh + kh, i * sw: i * sw + kw, :]
-            new_img[:, j, i] = np.sum(kernel * img, axis=(1, 2, 3))
+            for z in range(nc):
+                img = img_pad[:, i * sh: i * sh + kh, j * sw: j * sw + kw, :]
+                kernel = kernels[:, :, :, z]
+                new_img[:, i, j, z] = np.sum(kernel * img, axis=(1, 2, 3))
     return new_img
