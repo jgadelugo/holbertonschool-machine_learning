@@ -41,8 +41,8 @@ def conv_forward(A_prev, W, b,
 
     # padding for 'same' or 'valid'
     if padding == 'same':
-        ph = np.ceil(((sh * h_prev) - sh + kh - h_prev) / 2)
-        pw = np.ceil(((sw * w_prev) - sw + kw - w_prev) / 2)
+        ph = int(np.ceil(((sh * h_prev) - sh + kh - h_prev) / 2))
+        pw = int(np.ceil(((sw * w_prev) - sw + kw - w_prev) / 2))
     else:
         ph = 0
         pw = 0
