@@ -36,8 +36,8 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
     # initialize output
     output = np.zeros((m, oh, ow, c_prev))
 
-    for i in range(oh):
-        for j in range(ow):
+    for i in range(ow):
+        for j in range(oh):
             # elm-wise mult of kernel and image
             x = A_prev[:, j * sh: j * sh + kh, i * sw: i * sw + kw]
             if mode == 'max':
