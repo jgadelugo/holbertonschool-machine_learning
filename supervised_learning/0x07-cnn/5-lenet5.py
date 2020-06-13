@@ -24,15 +24,15 @@ def lenet5(X):
     """
     init = K.initializers.he_normal(seed=None)
 
-    lay1 = K.layers.Conv2D(filters=6, kernel_size=5, padding='same',
+    lay1 = K.layers.Conv2D(filters=6, kernel_size=(5, 5), padding='same',
                            activation='relu', kernel_initializer=init)(X)
 
-    lay2 = K.layers.MaxPooling2D(pool_size=[2, 2], strides=2)(lay1)
+    lay2 = K.layers.MaxPool2D(pool_size=[2, 2], strides=2)(lay1)
 
     lay3 = K.layers.Conv2D(filters=16, kernel_size=5, padding='valid',
                            activation='relu', kernel_initializer=init)(lay2)
 
-    lay4 = K.layers.MaxPooling2D(pool_size=[2, 2], strides=2)(lay3)
+    lay4 = K.layers.MaxPool2D(pool_size=[2, 2], strides=2)(lay3)
 
     # flatten before dense layers
     lay4 = K.layers.Flatten()(lay4)
@@ -50,7 +50,7 @@ def lenet5(X):
 
     model = K.models.Model(X, lay7)
 
-    model.complile(optimizer=K.optimizers.Adam(),
+    model.compile(optimizer=K.optimizers.Adam(),
                    loss='categorical_crossentropy',
                    metrics=['accuracy'])
 
