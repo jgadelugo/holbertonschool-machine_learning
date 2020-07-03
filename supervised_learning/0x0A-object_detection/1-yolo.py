@@ -105,8 +105,8 @@ class Yolo:
             # normalize
             bx = bx / gw
             by = by / gh
-            bw = bw / self.model.input.shape[1]
-            bh = bh / self.model.input.shape[2]
+            bw = bw / self.model.input.shape[1].value
+            bh = bh / self.model.input.shape[2].value
 
             x1 = (bx - bw / 2) * image_width
             y1 = (by - bh / 2) * image_height
