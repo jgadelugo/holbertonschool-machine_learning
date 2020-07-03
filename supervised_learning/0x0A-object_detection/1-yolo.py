@@ -61,9 +61,9 @@ class Yolo:
             @box_class_probs: np.ndarray shape (grid_height, grid_width,
             anchor_boxes, classes) box's class probabilities for each output
         """
-        list1 = []
-        list2 = []
-        list3 = []
+        boxes = []
+        box_confidences = []
+        box_class_probs = []
 
         image_height = image_size[0]
         image_width = image_size[1]
@@ -71,14 +71,11 @@ class Yolo:
         for i, output in enumerate(outputs):
             gh = output.shape[0]
             gw = output.shape[1]
-            # number of anchor boxes
-            anchor_boxes = output.shape[2]
 
             t_x = output[:, :, :, 0]
             t_y = output[:, :, :, 1]
             t_w = output[:, :, :, 2]
             t_h = output[:, :, :, 3]
-            box_confidence = output[:, :, :, 4]
 
             anchor = self.anchors[i]
 
@@ -108,18 +105,17 @@ class Yolo:
             x2 = (bx + bw / 2) * image_width
             y2 = (by + bh / 2) * image_height
 
-            boxes = np.zeros(output[:, :, :, :4].shape)
-            boxes[:, :, :, 0] = x1
-            boxes[:, :, :, 1] = y1
-            boxes[:, :, :, 2] = x2
-            boxes[:, :, :, 3] = y2
+            box = np.zeros(output[:, :, :, :4].shape)
+            box[:, :, :, 0] = x1
+            box[:, :, :, 1] = y1
+            box[:, :, :, 2] = x2
+            box[:, :, :, 3] = y2
 
-            list1.append(boxes)
+            boxes.append(box)
 
-            box_confidence = self.sigmoid(box_confidence
-                                          ).reshape(gh, gw, anchor_boxes, 1)
-            list2.append(box_confidence)
+            box_confidence = self.sigmoid(output[:, :, :, 4, np.newaxis])
+            box_confidences.append(box_confidence)
 
             box_class = self.sigmoid(output[:, :, :, 5:])
-            list3.append(box_class)
-        return list1, list2, list3
+            box_class_probs.append(box_class)
+        return boxes, box_confidences, box_class_probs
