@@ -115,7 +115,8 @@ class Yolo:
 
             box_confidence = self.sigmoid(output[:, :, :, 4, np.newaxis])
             box_confidences.append(box_confidence)
+            t_cprops = output[:, :, :, 5:]
 
-            box_class = self.sigmoid(output[:, :, :, 5:])
+            box_class = = (1 / (1 + np.exp(-t_cprops)))
             box_class_probs.append(box_class)
         return boxes, box_confidences, box_class_probs
