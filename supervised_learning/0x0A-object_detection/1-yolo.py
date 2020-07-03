@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-""" YOLO """
+"""
+YOLO
+"""
 import tensorflow.keras as K
 import numpy as np
 
 
 class Yolo:
-    """ Use Yolo v3 algorithm to perform object detection """
+    """
+    Use Yolo v3 algorithm to perform object detection
+    """
     def __init__(self, model_path, classes_path, class_t, nms_t, anchors):
-        """ constructor
+        """
+        constructor
         @model_path: Where Darknet Keras model is stored
         @classes_path: where the list of class names used for the Darknet
         model, listed in order of index can be found
@@ -35,11 +40,14 @@ class Yolo:
         self.anchors = anchors
 
     def sigmoid(self, x):
-        """ sigmoid function """
+        """
+        sigmoid function
+        """
         return 1 / (1 + np.exp(-x))
 
     def process_outputs(self, outputs, image_size):
-        """ processes outputs
+        """
+        processes outputs
         @outputs: list of np.ndarray containing the predictions from Darknet
         model for a single image - shape below
         (grid_height, grid_width, anchor_boxes, 4 + 1 + classes)
