@@ -32,4 +32,4 @@ def add_matrices(mat1, mat2):
         for i in range(len(mat1)):
             new.append(add_two_lists(mat1[i], mat2[i]))
         return new
-    return mat2
+    return [[]]
