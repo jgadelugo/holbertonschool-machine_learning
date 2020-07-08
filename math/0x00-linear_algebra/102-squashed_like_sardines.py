@@ -11,7 +11,7 @@ def get_shape(matrix):
     return shape
 
 
-def add_matrices(mat1, mat2):
+def cat_matrices(mat1, mat2, axis=0):
     """Adds two matrices"""
     shape1 = get_shape(mat1)
     shape2 = get_shape(mat2)
