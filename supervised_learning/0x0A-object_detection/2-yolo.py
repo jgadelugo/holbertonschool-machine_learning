@@ -151,7 +151,7 @@ class Yolo:
             grid_height, grid_width, anchor_box, _ = box_conf.shape
             for h in range(grid_height):
                 for w in range(grid_width):
-                    for a_box in anchor_box:
+                    for a_box in range(anchor_box):
                         box = boxes[i][h, w, a_box]
                         classes = box_class_probs[i][h, w, a_box]
                         box_score = box_conf[h, w, a_box, 0] * np.max(classes)
