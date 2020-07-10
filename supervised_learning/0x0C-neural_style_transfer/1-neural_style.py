@@ -76,7 +76,8 @@ class NST():
 
     def load_model(self):
         """ load VGG19 mdoel"""
-        # Load our model. We load pretrained VGG, trained on imagenet data (weights=’imagenet’)
+        # Load our model. We load pretrained VGG, trained on imagenet data
+        # (weights=’imagenet’)
         vgg = tf.keras.applications.vgg19.VGG19(include_top=False,
                                                 weights='imagenet',
                                                 pooling='avg')
@@ -86,9 +87,9 @@ class NST():
                                          custom_objects=co)
         for layer in vgg.layers:
             layer.trainable = False
-        # Get output layers corresponding to style and content layers 
-        style_outputs = [vgg.get_layer(name).output for name in self.style_layers]
+        # Get output layers corresponding to style and content layers
+        style_outputs = [vgg.get_layer(x).output for x in self.style_layers]
         content_outputs = [vgg.get_layer(self.content_layer).output]
         model_outputs = style_outputs + content_outputs
-        # Build model 
+        # Build model
         self.model = tf.keras.models.Model(vgg.input, model_outputs)
