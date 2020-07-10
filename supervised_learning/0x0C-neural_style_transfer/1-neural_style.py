@@ -39,6 +39,7 @@ class NST():
         self.content_image = self.scale_image(content_image)
         self.alpha = alpha
         self.beta = beta
+        self.load_model()
 
     def scale_image(self, image):
         """rescales image such its pixels values are between 0-1 and
@@ -67,8 +68,7 @@ class NST():
         image = tf.expand_dims(image, 0)
         image = tf.image.resize_bicubic(image,
                                         (new_h, new_w),
-                                        align_corners=False,
-                                        pooling='avg')
+                                        align_corners=False)
         image = image / 255
         image = tf.clip_by_value(image, clip_value_min=0, clip_value_max=1)
 
@@ -79,12 +79,16 @@ class NST():
         # Load our model. We load pretrained VGG, trained on imagenet data (weights=’imagenet’)
         vgg = tf.keras.applications.vgg19.VGG19(include_top=False,
                                                 weights='imagenet',
-                                                )
+                                                pooling='avg')
         vgg.save("base_model")
-        vgg.trainable = False
+        co = {'MaxPooling2D': tf.keras.layers.AveragePooling2D}
+        vgg = tf.keras.models.load_model("base_model",
+                                         custom_objects=co)
+        for layer in vgg.layers:
+            layer.trainable = False
         # Get output layers corresponding to style and content layers 
         style_outputs = [vgg.get_layer(name).output for name in self.style_layers]
-        content_outputs = [vgg.get_layer(name).output for name in self.content_layers]
+        content_outputs = [vgg.get_layer(self.content_layer).output]
         model_outputs = style_outputs + content_outputs
         # Build model 
-        return tf.keras.model.Model(vgg.input, model_outputs)
+        self.model = tf.keras.models.Model(vgg.input, model_outputs)
