@@ -8,7 +8,7 @@ class NST():
     """ Performs task for neural style transfer"""
     # public attributes
     style_layers = ['block1_conv1', 'block2_conv1', 'block3_conv1',
-    'block4_conv1', 'block5_conv1']
+                    'block4_conv1', 'block5_conv1']
     content_layer = 'block5_conv2'
 
     def __init__(self, style_image, content_image, alpha=1e4, beta=1):
@@ -33,13 +33,12 @@ class NST():
             raise TypeError("alpha must be a non-negative number")
         if not isinstance(beta, (int, float)) or beta < 0:
             raise TypeError("beta must be a non-negative number")
-        
+
         tf.enable_eager_execution()
         self.style_image = self.scale_image(style_image)
         self.content_image = self.scale_image(content_image)
         self.alpha = alpha
         self.beta = beta
-
 
     def scale_image(self, image):
         """rescales image such its pixels values are between 0-1 and
