@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Calculates the minor of a matrix"""
+"""
+Calculates the minor of a matrix
+"""
 
 
 def determinant(matrix):
-    """Calculates the determinant of a matrix
+    """
+    Calculates the determinant of a matrix
     @matrix: list of lists whose determinant should be calculated
     Return: the determinant of matrix
     """
@@ -41,7 +44,8 @@ def determinant(matrix):
 
 
 def minor(matrix):
-    """Calculates the minor of a matrix
+    """
+    Calculates the minor of a matrix
     @matrix: list of lists to get minor of
     Return: the minor matrix of matrix
     """
