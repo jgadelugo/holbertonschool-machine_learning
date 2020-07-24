@@ -74,7 +74,7 @@ def minor(matrix):
                 sub_matrix.append(sub)
 
             if sub_matrix == []:
-                    sub_matrix = [[]]
+                sub_matrix = [[]]
 
             new[i].append([])
             new[i][j] = determinant(sub_matrix)
