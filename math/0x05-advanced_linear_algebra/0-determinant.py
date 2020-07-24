@@ -2,7 +2,7 @@
 """ Calculate the determinant of a matrix"""
 
 
-def determinant(matrix, total=0):
+def determinant(matrix):
     """Calculates the determinant of a matrix
     @matrix: list of lists whose determinant should be calculated
     Return: the determinant of matrix
@@ -28,7 +28,7 @@ def determinant(matrix, total=0):
         return matrix[0][0]
     if size == 2:
         return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]
-
+    total=0
     for i in range(size):
         sub_matrix = matrix[1:]
 
