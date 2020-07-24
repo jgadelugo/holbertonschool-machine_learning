@@ -22,7 +22,7 @@ def determinant(matrix):
         if not isinstance(l, list):
             raise TypeError('matrix must be a list of lists')
         if len(l) != size:
-            raise ValueError('matrix must be a square matrix')
+            raise ValueError('matrix must be a non-empty square matrix')
 
     if size == 1:
         return matrix[0][0]
@@ -41,7 +41,10 @@ def determinant(matrix):
 
 
 def minor(matrix):
-    """Calculates the minor of a matrix"""
+    """Calculates the minor of a matrix
+    @matrix: list of lists to get minor of
+    Return: the minor matrix of matrix
+    """
     if not isinstance(matrix, list) or matrix == []:
         raise TypeError('matrix must be a list of lists')
 
@@ -51,16 +54,15 @@ def minor(matrix):
     size = len(matrix)
 
     if size == 1 and len(matrix[0]) == 0:
-        return 1
+        raise ValueError('matrix must be a non-empty square matrix')
 
     for l in matrix:
         if not isinstance(l, list):
             raise TypeError('matrix must be a list of lists')
         if len(l) != size:
-            raise ValueError('matrix must be a square matrix')
+            raise ValueError('matrix must be a non-empty square matrix')
 
     new = []
-
     for i in range(size):
         new.append([])
         for j in range(size):
