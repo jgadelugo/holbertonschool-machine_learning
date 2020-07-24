@@ -9,7 +9,7 @@ def definiteness(matrix):
     Return: Positive definite, Positive semi-definite, Negative semi-definite,
     Negative definite, or Indefinite"""
 
-    if isinstance(matrix, np.ndarray):
+    if not isinstance(matrix, np.ndarray):
         raise TypeError('matrix must be a numpy.ndarray')
 
     if len(matrix.shape) != 2 or (matrix.shape[0] != matrix.shape[1]):
@@ -18,7 +18,7 @@ def definiteness(matrix):
     if not np.all(np.transpose(matrix) == matrix):
         return None
 
-    eign, _ = np.linalg.eign(matrix)
+    eign, _ = np.linalg.eig(matrix)
 
     if all(eign > 0):
         return 'Positive definite'
