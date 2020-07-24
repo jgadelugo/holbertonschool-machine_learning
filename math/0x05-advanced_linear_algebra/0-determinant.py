@@ -28,7 +28,7 @@ def determinant(matrix):
         return matrix[0][0]
     if size == 2:
         return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]
-    total=0
+    total = 0
     for i in range(size):
         sub_matrix = matrix[1:]
 
