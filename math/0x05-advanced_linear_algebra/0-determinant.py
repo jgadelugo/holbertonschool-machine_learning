@@ -1,4 +1,5 @@
 #!usr/bin/env python3
+""" Calculate the determinant of a matrix"""
 
 
 def determinant(matrix, total=0):
@@ -6,7 +7,10 @@ def determinant(matrix, total=0):
     @matrix: list of lists whose determinant should be calculated
     Return: the determinant of matrix
     """
-    if not isinstance(matrix, list) or matrix == [] or not isinstance(matrix[0], list):
+    if not isinstance(matrix, list) or matrix == []:
+        raise TypeError('matrix must be a list of lists')
+
+    if not isinstance(matrix[0], list):
         raise TypeError('matrix must be a list of lists')
 
     size = len(matrix)
@@ -22,7 +26,7 @@ def determinant(matrix, total=0):
 
     if size == 1:
         return matrix[0][0]
-    if size  == 2:
+    if size == 2:
         return matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1]
 
     for i in range(size):
