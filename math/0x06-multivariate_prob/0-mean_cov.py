@@ -20,7 +20,7 @@ def mean_cov(X):
     if n < 2:
         raise ValueError('X must contain multiple data points')
     # mean
-    mean = np.sum(X, axis=0) / n
+    mean = np.mean(X, axis=0).reshape(1, d)
 
     # derivative
     dev = X - mean
