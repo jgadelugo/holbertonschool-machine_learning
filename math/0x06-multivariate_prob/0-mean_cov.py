@@ -12,13 +12,14 @@ def mean_cov(X):
         @mean: np.ndarray shape (1, d) the mean of the data set
         @cov: np.ndarray shape (d, d) the covariance matrix of the data set
     """
-    n, d = X.shape
-
     if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise TypeError('X must be a 2D numpy.ndarray')
 
+    n, d = X.shape
+
     if n < 2:
         raise ValueError('X must contain multiple data points')
+
     # mean
     mean = np.mean(X, axis=0).reshape(1, d)
 
