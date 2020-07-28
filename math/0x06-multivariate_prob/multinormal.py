@@ -44,4 +44,4 @@ class MultiNormal():
         const = 1 / np.sqrt(((2 * np.pi) ** d) * det)
 
         pdf = const * np.exp(np.matmul(np.matmul(-dev.T, inv), dev / 2))
-        return pdf.reshape(-1)[0]
+        return pdf[0][0]
