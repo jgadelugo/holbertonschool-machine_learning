@@ -26,6 +26,6 @@ def mean_cov(X):
     dev = X - mean
 
     # covariance
-    cov = np.dot(dev.T, dev) / (n - 1)
+    cov = np.matmul(dev.T, dev) / (n - 1)
 
     return mean, cov
