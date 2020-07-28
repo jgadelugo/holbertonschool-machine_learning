@@ -33,7 +33,7 @@ class MultiNormal():
             raise TypeError('x must be a numpy.ndarray')
         shape = x.shape
         d = self.cov.shape[0]
-        if len(shape) != 2:
+        if len(shape) != 2 or shape[0] != d or shape[1] != 1:
             raise ValueError("x mush have the shape ({}, 1)".format(d))
 
         det = np.linalg.det(self.cov)
