@@ -24,22 +24,21 @@ def P_affinities(X, tol=1e-5, perplexity=30.0):
         b_min = None
         b_max = None
 
-        Di = D[i]
-        Di = np.delete(Di, i, axis=0)
+        Di = np.delete(D[i], i, axis=0)
 
         Hi, Pi = HP(Di, beta[i])
 
         Hdiff = Hi - H
         tries = 0
-        while np.abs(Hdiff) > tol and tries < 50:
+        while np.abs(Hdiff) > tol and tries < 1000:
             if Hdiff > 0:
-                b_min = beta[i]
+                b_min = beta[i, 0]
                 if b_max is None:
                     beta[i] = beta[i] * 2
                 else:
                     beta[i] = (beta[i] + b_max) / 2
             else:
-                b_max = beta[i]
+                b_max = beta[i, 0]
                 if b_min is None:
                     beta[i] = beta[i] / 2
                 else:
