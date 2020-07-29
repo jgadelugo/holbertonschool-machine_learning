@@ -16,7 +16,7 @@ def P_affinities(X, tol=1e-5, perplexity=30.0):
     Return: P
         @P: np.ndarray of shape (n, n) containing the symmetric P affinities
     """
-    n, d = X.shape
+    n = X.shape[0]
 
     D, P, beta, H = P_init(X, perplexity)
 
@@ -24,27 +24,27 @@ def P_affinities(X, tol=1e-5, perplexity=30.0):
         b_min = None
         b_max = None
 
-        Di = D[i].copy()
+        Di = D[i]
         Di = np.delete(Di, i, axis=0)
 
-        Hi, Pi = HP(Di, beta[i, 0])
+        Hi, Pi = HP(Di, beta[i])
 
         Hdiff = Hi - H
         tries = 0
         while np.abs(Hdiff) > tol and tries < 50:
             if Hdiff > 0:
-                b_min = beta[i, 0]
+                b_min = beta[i]
                 if b_max is None:
-                    beta[i, 0] = beta[i, 0] * 2
+                    beta[i] = beta[i] * 2
                 else:
-                    beta[i, 0] = (beta[i, 0] + b_max) / 2
+                    beta[i] = (beta[i] + b_max) / 2
             else:
-                b_max = beta[i, 0]
+                b_max = beta[i]
                 if b_min is None:
-                    beta[i, 0] = beta[i, 0] / 2
+                    beta[i] = beta[i] / 2
                 else:
-                    beta[i, 0] = (beta[i, 0] + b_min) / 2
-            Hi, Pi = HP(Di, beta[i, 0])
+                    beta[i] = (beta[i] + b_min) / 2
+            Hi, Pi = HP(Di, beta[i])
             Hdiff = Hi - H
         Pi = np.insert(Pi, i, 0)
         P[i] = Pi

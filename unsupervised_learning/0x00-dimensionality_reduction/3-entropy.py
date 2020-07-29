@@ -14,10 +14,9 @@ def HP(Di, beta):
         @Hi: Shannon entropy of the points
         @Pi: np.ndarray shape (n - 1), the P affinities of the points
     """
-    Pi = np.exp(-Di.copy() * beta)
+    Pi = np.exp(-Di * beta)
 
     sumP = np.sum(Pi)
-    # Hi = np.log(sumP) + beta * np.sum(Di * Pi) / sumP
 
     Pi = Pi / sumP
     Hi = -np.sum(Pi * np.log2(Pi))
