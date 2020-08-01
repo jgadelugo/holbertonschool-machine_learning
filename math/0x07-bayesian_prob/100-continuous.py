@@ -71,4 +71,3 @@ def posterior(x, n, p1, p2):
     if p2 <= p1:
         raise ValueError("p2 must be greater than p1")
     return intersection(x, n, p1, p2) / marginal(x, n, p1, p2)
- 
