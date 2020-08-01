@@ -52,6 +52,7 @@ def intersection(x, n, P, Pr):
         raise ValueError("Pr must sum to 1")
     return lh * Pr
 
+
 def marginal(x, n, P, Pr):
     """Calculates the marginal probability of obtaining the data
         @x:number of patients that develop severe side effects
