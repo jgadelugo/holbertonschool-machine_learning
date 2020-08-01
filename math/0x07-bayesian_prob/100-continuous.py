@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Calculate the mean and covariance of a data set"""
 import numpy as np
+from scipy import special
 
 
 def likelihood(x, n, P):
@@ -39,17 +40,7 @@ def intersection(x, n, P, Pr):
         raise ValueError(err_msg)
     if x > n:
         raise ValueError("x cannot be greater than n")
-    if not isinstance(P, np.ndarray) or len(P.shape) != 1:
-        raise TypeError("P must be a 1D numpy.ndarray")
-    if np.any(P < 0) or np.any(P > 1):
-        raise ValueError("All values in P must be in the range [0, 1]")
     lh = likelihood(x, n, P)
-    if not isinstance(Pr, np.ndarray) or Pr.shape != P.shape:
-        raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
-    if np.any(Pr < 0) or np.any(Pr > 1):
-        raise ValueError("All values in Pr must be in the range [0, 1]")
-    if not np.isclose(Pr.sum(), 1):
-        raise ValueError("Pr must sum to 1")
     return lh * Pr
 
 
@@ -65,12 +56,20 @@ def marginal(x, n, P, Pr):
     return np.sum(intersection(x, n, P, Pr))
 
 
-def posterior(x, n, P, Pr):
+def posterior(x, n, p1, p2):
     """calculates the posterior probability
         @x:number of patients that develop severe side effects
         @n: total number of patients observed
         @P1: lower bound on the range
         @P2: upper bound on the range
-    Return: posterior probability of each probability in P given x and n
+    Return: the posterior probability that p is within the range
+    [p1, p2] given x and n
     """
-    return intersection(x, n, P, Pr) / marginal(x, n, P, Pr)
+    if not isinstance(p1, float) or p1 < 0 or p1 > 1:
+        raise ValueError("p1 must be a float in the range [0, 1]")
+    if not isinstance(p2, float) or p2 < 0 or p2 > 1:
+        raise ValueError("p2 must be a float in the range [0, 1]")
+    if p2 <= p1:
+        raise ValueError("p2 must be greater than p1")
+    return intersection(x, n, p1, p2) / marginal(x, n, p1, p2)
+ 
