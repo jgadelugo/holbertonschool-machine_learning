@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Calculate the mean and covariance of a data set"""
 import numpy as np
-from scipy import special
 
 
 def likelihood(x, n, P):
