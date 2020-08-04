@@ -12,4 +12,11 @@ def initialize(X, k):
     Return: np.ndarraay shape(k, d) initialized centroids for each cluster,
     or None if failure
     """
-    return X[np.random.randint(X.shape[0], size=k)]
+    try:
+        d = X.shape[1]
+        low = X.min(axis=0)
+        high = X.max(axis=0)
+        return np.random.uniform(low, high, (k, d))
+    except Exception as e:
+        # print(e)
+        return None
