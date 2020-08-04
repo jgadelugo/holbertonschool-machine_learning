@@ -58,11 +58,11 @@ def kmeans(X, k, iterations=1000):
         return None, None
     if not isinstance(iterations, int) or iterations <= 0:
         return None, None
+    dist = get_distance(X, centroids)
+    # print(dist.shape)
+    clss = np.argmin(dist, axis=1)
     d = X.shape[1]
     for i in range(iterations):
-        dist = get_distance(X, centroids)
-        # print(dist.shape)
-        clss = np.argmin(dist, axis=1)
         cent = np.copy(centroids)
         for j in range(centroids.shape[0]):
             if (X[clss == j].size == 0):
@@ -71,6 +71,8 @@ def kmeans(X, k, iterations=1000):
                 centroids[j, :] = np.random.uniform(low, high, size=(1, d))
             else:
                 centroids[j, :] = np.mean(X[clss == j], 0)
+        dist = get_distance(X, centroids)
+        clss = np.argmin(dist, axis=1)
         if (cent == centroids).all():
             return (centroids, clss)
     return (centroids, clss)
