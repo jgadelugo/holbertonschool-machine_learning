@@ -12,11 +12,14 @@ def initialize(X, k):
     Return: np.ndarraay shape(k, d) initialized centroids for each cluster,
     or None if failure
     """
-    try:
-        d = X.shape[1]
-        low = X.min(axis=0)
-        high = X.max(axis=0)
-        return np.random.uniform(low, high, (k, d))
-    except Exception as e:
-        # print(e)
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
+        # print("Invalid X, must be np.ndarray of shape(n, d)")
         return None
+    n, d = X.shape
+    if not isinstance(k, int) or k <= 0 or k >= n:
+        # print("Invalid k, must be int > 0 and < n")
+        return None
+
+    low = X.min(axis=0)
+    high = X.max(axis=0)
+    return np.random.uniform(low, high, (k, d))
