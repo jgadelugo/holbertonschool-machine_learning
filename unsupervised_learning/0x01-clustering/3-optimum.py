@@ -23,6 +23,8 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         kmax = X.shape[0]
     if not isinstance(kmin, int) or not isinstance(kmax, int):
         return None, None
+    if not isinstance(iterations, int):
+        return None, None
     if kmin < 1 or kmax < 1 or kmin >= kmax or iterations < 1:
         return None, None
 
@@ -35,6 +37,8 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         centroids, clss = kmeans(X, i, iterations)
         results.append((centroids, clss))
         var = variance(X, centroids)
+        if k == kmin:
+            var_first = var
         # get diff
         d_vars.append(first_var - var)
 
