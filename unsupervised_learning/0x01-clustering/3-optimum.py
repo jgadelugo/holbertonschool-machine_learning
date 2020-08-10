@@ -29,16 +29,12 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         return None, None
 
     results, d_vars = [], []
-    # get var from smallest cluster
-    centroids, clss = kmeans(X, kmin, iterations)
-    first_var = variance(X, centroids)
-
     for i in range(kmin, kmax + 1):
         centroids, clss = kmeans(X, i, iterations)
         results.append((centroids, clss))
         var = variance(X, centroids)
-        if k == kmin:
-            var_first = var
+        if i == kmin:
+            first_var = var
         # get diff
         d_vars.append(first_var - var)
 
