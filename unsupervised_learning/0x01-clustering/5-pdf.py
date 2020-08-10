@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" """
+"""Calculate the probability density function of Gaussian distribution"""
 import numpy as np
 
 
