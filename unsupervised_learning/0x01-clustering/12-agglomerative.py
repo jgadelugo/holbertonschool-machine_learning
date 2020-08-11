@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """performs agglomerative clustering on a dataset"""
-import sklearn.cluster
+import scipy.cluster.hierarchy
+import matplotlib.pyplot as plt
 
 
-def gmm(X, k):
+def agglomerative(X, dist):
     """performs agglomerative clustering on a dataset
     @X: np.ndarray shape(n, d) data set
     """

@@ -13,3 +13,16 @@ def maximization(X, g):
         @S: np.ndarray of shape(k, d, d) updated covariance matrices for
         each cluster
     """
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
+        return None, None, None
+    if not isinstance(g, np.ndarray) or len(g.shape) != 2:
+        return None, None, None
+    n, d = X.shape
+    k, ng = g.shape
+    if n != ng:
+        return None, None, None
+    if int(np.sum(np.sum(g, axis=0))) != n:
+        return None, None, None
+    # placer
+    return None, None, None
+    

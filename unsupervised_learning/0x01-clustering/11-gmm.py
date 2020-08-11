@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ calculates a GMM from a dataset"""
-import sklearn.cluster
+import sklearn.mixture
 
 
 def gmm(X, k):
