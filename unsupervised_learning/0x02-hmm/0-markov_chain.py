@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+"""determines the probability of a markov chain being in a particular"""
 import numpy as np
 
 
