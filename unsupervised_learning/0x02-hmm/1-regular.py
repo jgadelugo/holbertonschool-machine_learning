@@ -25,6 +25,6 @@ def regular(P):
         steady = np.linalg.solve(QTQ, ones)
         if np.any(steady < 0):
             return None
-        return steady
+        return np.asarray([steady])
     except Exception as e:
         return None
