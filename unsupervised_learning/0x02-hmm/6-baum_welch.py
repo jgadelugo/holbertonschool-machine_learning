@@ -39,15 +39,5 @@ def baum_welch(Observation, Transition, Emission, Initial, iterations=1000):
     if Initial.shape[0] != N or Initial.shape[1] != 1:
         return None, None
 
-    F = np.zeros((N, T))
-
-    for s in range(N):
-        F[s, 0] = Initial[s, 0] * Emission[s, Observation[0]]
-    for t in range(1, T):
-        for s in range(N):
-            alpha = F[:, t - 1]
-            tran = Transition[s]
-            em = Emission[s, Observation[t]]
-            F[s, t] = np.sum(alpha * tran * em)
-    P = np.sum(F[:, -1])
-    return P, F
+    # Prep file
+    return None, None
