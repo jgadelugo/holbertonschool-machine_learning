@@ -18,8 +18,7 @@ def generator(Z):
     """
     with tf.variable_scope('generator', reuse=tf.AUTO_REUSE):
         layer_1 = tf.layers.Dense(input=Z, units=128, name='layer_1',
-                                  activation=tf.nn.relu)
-        layer_2 = tf. layers.Dense(units=784, name='layer_2',
-                                   activation=tf.nn.sigmoid)
-    X = layer_2(layer_1)
+                                  activation='relu')
+        X = tf.layers.Dense(input=layer_1, units=784, name='layer_2',
+                            activation='sigmoid')
     return X
