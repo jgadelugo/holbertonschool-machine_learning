@@ -62,7 +62,6 @@ class BidirectionalCell():
             @Y: outputs
         """
         t = H.shape[0]
-        print()
         Y = [0] * t
 
         for i in range(t):
