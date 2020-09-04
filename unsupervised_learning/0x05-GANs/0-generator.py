@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Creates a simple generator network for MNIST digits"""
 import tensorflow as tf
-import numpy as np
 
 
 def generator(Z):
@@ -21,6 +20,6 @@ def generator(Z):
         layer_1 = tf.layers.Dense(input=Z, units=128, name='layer_1',
                                   activation=tf.nn.relu)
         layer_2 = tf. layers.Dense(units=784, name='layer_2',
-                             activation=tf.nn.sigmoid)
+                                   activation=tf.nn.sigmoid)
     X = layer_2(layer_1)
     return X
