@@ -57,6 +57,6 @@ class Encoder(tf.keras.layers.Layer):
         x = self.dropout(x, training=training)
 
         for i in range(self.N):
-            x = self.enc_layers[i](x, training, mask)
+            x = self.blocks[i](x, training, mask)
 
         return x
