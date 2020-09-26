@@ -25,7 +25,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
             @linear: Dense layer with dm units, used to generate the attention
             output
         """
-        super(MultiHeadAttention, self).__init__()
+        super().__init__()
         self.h = h
         self.dm = dm
         self.depth = dm // h
@@ -62,9 +62,13 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         """
         batch_size = tf.shape(Q)[0]
 
-        q = self.split_heads(self.Wq(Q), batch_size)
-        k = self.split_heads(self.Wk(K), batch_size)
-        v = self.split_heads(self.Wv(V), batch_size)
+        q = self.Wq(Q)
+        k = self.Wk(K)
+        v = self.Wv(V)
+
+        q = self.split_heads(q, batch_size)
+        k = self.split_heads(k, batch_size)
+        v = self.split_heads(v, batch_size)
 
         att_out, weights = sdp_attention(q, k, v, mask)
 
