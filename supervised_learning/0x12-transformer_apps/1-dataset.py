@@ -47,12 +47,11 @@ class Dataset():
 
         return tokenizer_pt, tokenizer_en
 
-
     def encode(self, pt, en):
         """ encodes a translation into tokens
         @pt: tf.Tensor containing the Portuguese sentence
         @en: tf.Tensor containing the corresponding English sentence
-        *tokenized sentences should include the start and end of sentence tokens
+        *tokenized sentences should include start and end of sentence tokens
         *start token should be indexed as vocab_size
         *end token should be indexed as vocab_size + 1
         Returns: pt_tokens, en_tokens
