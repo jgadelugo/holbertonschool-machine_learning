@@ -21,6 +21,7 @@ class AtariProcessor(Processor):
     """ Processor for Atari """
     def process_observation(self, observation):
         """Process observations"""
+        INPUT_SHAPE = (84, 84)
         # Assert dimension (height, width, channel)
         assert observation.ndim == 3
         # Retrieve image from array

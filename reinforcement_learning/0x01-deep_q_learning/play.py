@@ -7,6 +7,8 @@ from rl.agents.dqn import DQNAgent
 from rl.memory import SequentialMemory
 from keras import layers
 import keras as K
+import numpy as np
+
 
 AtariProcessor = __import__('train').AtariProcessor
 
@@ -14,8 +16,8 @@ AtariProcessor = __import__('train').AtariProcessor
 if __name__ == '__main__':
     env = gym.make("Breakout-v0")
     env.reset()
-    np.random.seed(123)
-    env.seed(123)
+    #np.random.seed(123)
+    # env.seed(123)
     nb_actions = env.action_space.n
 
     INPUT_SHAPE = (84, 84)
