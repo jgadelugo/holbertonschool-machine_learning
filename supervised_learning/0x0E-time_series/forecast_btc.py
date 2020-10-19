@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" Train and show """
 import tensorflow as tf
 import numpy as np
 import pandas as pd
