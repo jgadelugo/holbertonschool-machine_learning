@@ -30,6 +30,6 @@ if __name__ == '__main__':
     launchpad_name = res_pad['name']
     launchpad_locality = res_pad['locality']
 
-    text = f"{launch_name} ({date}) {rocket_name} - {launchpad_name}"
-    text1 = " ({launchpad_locality})"
+    text = "{} ({}) {} -".format(launch_name, date, rocket_name)
+    text1 = " {} ({})".format(launchpad_name, launchpad_locality)
     print(text + text1)
