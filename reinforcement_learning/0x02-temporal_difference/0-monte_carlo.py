@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+"""Function that performs the Monte Carlo Algorithm"""
+
+
+def monte_carlo(env, V, policy, episodes=5000,
+                max_steps=100, alpha=0.1, gamma=0.99):
+    """Performs the Monte Carlo Algorithm
+    @env: the openAI environment instance
+    @V: np.ndarray of shape(s,) containing the value estimate
+    @policy: function that takes in a state and returns next action to take
+    @episodes: total number of episodes to train over
+    @max_steps: maximum number of steps per episdoe
+    @alpha: the learning rate
+    @gamma: the discount rate
+    Returns: V, updated value estimate
+    """
+    pass
