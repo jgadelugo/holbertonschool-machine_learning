@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Function that performs the Monte Carlo Algorithm"""
+import numpy as np
+from collections import defaultdict
 
 
 def monte_carlo(env, V, policy, episodes=5000,
@@ -14,4 +16,23 @@ def monte_carlo(env, V, policy, episodes=5000,
     @gamma: the discount rate
     Returns: V, updated value estimate
     """
-    pass
+    for i in range(episodes):
+        env.seed(0)
+        state = env.reset()
+        done = False
+        results_list = []
+        result_sum = 0.0
+        for j in range(max_steps):
+            action = policy(state)
+            state, reward, done, _ = env.step(action)
+            if state in [r[0] for r in results_list]:
+                continue
+            results_list.append((state, reward * gamma))
+            result_sum += reward
+            if done:
+                break
+            # result_sum = 0.0
+        for state, reward in reversed(results_list):
+            # result_sum = result_sum * gamma + reward
+            V[state] += alpha * (result_sum - V[state])
+    return V
