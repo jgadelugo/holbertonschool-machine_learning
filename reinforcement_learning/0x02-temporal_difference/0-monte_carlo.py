@@ -16,8 +16,8 @@ def monte_carlo(env, V, policy, episodes=5000,
     @gamma: the discount rate
     Returns: V, updated value estimate
     """
+    env.seed(0)
     for i in range(episodes):
-        env.seed(0)
         state = env.reset()
         prev_state = state
         done = False
@@ -26,8 +26,8 @@ def monte_carlo(env, V, policy, episodes=5000,
         for j in range(max_steps):
             action = policy(state)
             state, reward, done, _ = env.step(action)
-            if state in [r[0] for r in results_list]:
-                continue
+            # if state in [r[0] for r in results_list]:
+            #     continue
             results_list.append((prev_state, reward))
             prev_state = state
             result_sum += reward
