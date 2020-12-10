@@ -31,8 +31,7 @@ def monte_carlo(env, V, policy, episodes=5000,
             result_sum += reward
             if done:
                 break
-            # result_sum = 0.0
         for state, reward in reversed(results_list):
-            # result_sum = result_sum * gamma + reward
+            # result_sum *= gamma + reward
             V[state] += alpha * (result_sum - V[state])
     return V
