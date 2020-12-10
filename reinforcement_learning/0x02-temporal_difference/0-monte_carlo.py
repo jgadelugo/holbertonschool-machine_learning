@@ -30,7 +30,6 @@ def monte_carlo(env, V, policy, episodes=5000,
             #     continue
             results_list.append((prev_state, reward))
             prev_state = state
-            result_sum += reward
             if done:
                 break
         for state, reward in reversed(results_list):
