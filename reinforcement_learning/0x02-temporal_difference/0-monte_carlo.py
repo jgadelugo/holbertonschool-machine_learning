@@ -19,6 +19,7 @@ def monte_carlo(env, V, policy, episodes=5000,
     for i in range(episodes):
         env.seed(0)
         state = env.reset()
+        prev_state = state
         done = False
         results_list = []
         result_sum = 0.0
@@ -27,11 +28,12 @@ def monte_carlo(env, V, policy, episodes=5000,
             state, reward, done, _ = env.step(action)
             if state in [r[0] for r in results_list]:
                 continue
-            results_list.append((state, reward * gamma))
+            results_list.append((prev_state, reward))
+            prev_state = state
             result_sum += reward
             if done:
                 break
         for state, reward in reversed(results_list):
-            # result_sum *= gamma + reward
+            result_sum = result_sum * gamma + reward
             V[state] += alpha * (result_sum - V[state])
     return V
